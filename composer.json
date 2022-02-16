@@ -1,0 +1,33 @@
+{
+  "name": "exit11/push-sse",
+  "description": "mpcs core : Push SSE extention",
+  "type": "library",
+  "authors": [
+    {
+      "name": "HWAJUN LEE",
+      "email": "ezrock@naver.com"
+    }
+  ],
+  "require": {
+    "mpcs-ui/bootstrap5": "~0.1.0|dev-master",
+    "mpcs/core": "~0.1.0|dev-master"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Exit11\\PushSse\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Exit11\\PushSse\\PushSseServiceProvider"
+      ],
+      "aliases": {
+        "PushSse": "Exit11\\PushSse\\Facades\\PushSse"
+      }
+    }
+  }
+}
