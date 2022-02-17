@@ -10,9 +10,18 @@
     @push('header_script')
         @component('mpcs-push-sse::script_templates')
         @endcomponent
-    @endpush
-
-    @push('after_app_src_scripts')
         <script src="{{ mix('/vendor/exit11/push-sse/js/index.js') }}"></script>
     @endpush
+
+    @if (class_exists('Article'))
+        @push('after_app_src_scripts')
+            <script>
+                // Customize the notification channel
+                PUSHSSEMESSAGE.getChannel("pushSseArticle", (data) => {
+                    // custom code
+                    console.log(data);
+                });
+            </script>
+        @endpush
+    @endif
 @endif

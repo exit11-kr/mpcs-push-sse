@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   PUSHSSE.eventChannel = PUSHSSE.eventChannel ?? false;
 
   if (PUSHSSE.sseURL) {
-    PUSHSSEMESSAGE.sseEvent(PUSHSSE.sseURL);
+    PUSHSSEMESSAGE.sseDefaultEvent();
     PUSHSSEMESSAGE.notificableCheck();
   }
 
@@ -96,30 +96,33 @@ document.addEventListener("DOMContentLoaded", () => {
      * Push SSE 이벤트
      * @param  {} sseURL
      */
-    sseEvent(sseURL) {
+    sseDefaultEvent() {
+      // 공개이벤트
+      PUSHSSEMESSAGE.getChannel("publicMessage");
+      // 유저별 비공개이벤트
+      if (PUSHSSE.eventChannel) {
+        PUSHSSEMESSAGE.getChannel(PUSHSSE.eventChannel);
+      }
+    },
+
+    getChannel(eventName, callback) {
+      if (!callback) {
+        callback = (callbackData) => {};
+      }
+      const sseURL = PUSHSSE.sseURL;
       if (!sseURL) {
         return;
       }
       if (window.EventSource !== undefined) {
         const sse = new EventSource(`${sseURL}`);
-        // 공개이벤트
         sse.addEventListener(
-          "publicMessage",
+          eventName,
           (e) => {
             PUSHSSEMESSAGE.eventPush(e.data);
+            callback(e.data);
           },
           false
         );
-        // 유저별 비공개이벤트
-        if (PUSHSSE.eventChannel) {
-          sse.addEventListener(
-            PUSHSSE.eventChannel,
-            (e) => {
-              PUSHSSEMESSAGE.eventPush(e.data);
-            },
-            false
-          );
-        }
       }
     },
 
