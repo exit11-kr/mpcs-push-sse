@@ -42,12 +42,10 @@ php artisan vendor:publish --tag="mpcs-push-sse-config"
 ```php
 ### Article Repository에 적용된 예시
 
-use Exit11\PushSse\Facades\PushSse;
-
 // PushSse 클래스가 있는지, 사용가능한지 확인
 if (class_exists('Exit11\PushSse\Facades\PushSse') && config('mpcspushsse.enabled')) {
     // PushSse 클래스가 있으면 푸시 전송
-    PushSse::sseQueue($pushMessage, $title, [
+    \PushSse::sseQueue($pushMessage, $title, [
         'is_private' => false, // 공개, 비공개 여부
         'notification' => $is_push_notification, // 토스트 알림여부
         'pushed_at' => $this->model->released_at, // 푸시 알림 시간 지정
