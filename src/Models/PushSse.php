@@ -72,7 +72,7 @@ class PushSse extends Model
     public function delayTime()
     {
         $now = Carbon::now();
-        $date = $now->modify('-' . (config('mpcsui.sse.interval') * 2) . ' seconds');
+        $date = $now->modify('-' . (config('mpcspushsse.interval') * 2) . ' seconds');
         return $date->format('Y-m-d H:i:s');
     }
 
