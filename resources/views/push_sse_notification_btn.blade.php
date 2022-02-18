@@ -11,7 +11,7 @@
             </button>
             <div class="dropdown-menu pb-0" style="width:340px;">
                 <div class="d-flex justify-content-between align-items-center px-3">
-                    <h6 class="mb-0 text-muted">Push Notification On/Off</h6>
+                    <h6 class="mb-0 fw-bold">{{ trans('mpcs-push-sse::word.toast_notification_onoff') }}</h6>
                     <div class="form-check form-switch ps-0 mb-0">
                         <input id="pushSseNotificationChecked" class="form-check-input ms-0" type="checkbox"
                             name="push_sse_notification_checked" checked="">
@@ -19,13 +19,15 @@
                     </div>
                 </div>
                 <hr class="dropdown-divider">
-                <h6 class="dropdown-header">New Notification List</h6>
-                <div id="pushSseNotificationItemWrap" class="px-2">
+                <h6 class="dropdown-header" data-title-list="{{ trans('mpcs-push-sse::word.new_notification_list') }}"
+                    data-title-empty="{{ trans('mpcs-push-sse::word.empty_notification_datas') }}"></h6>
+                <div id="pushSseNotificationItemWrap" class="overflow-scroll px-2"
+                    style="max-height: calc(100vh - 200px)">
                     {{-- 알림메세지 리스트 --}}
                 </div>
                 <button id="pushSseNotificationClearBtn"
                     class="btn btn-sm btn-primary w-100 rounded-0 rounded-bottom mt-2">
-                    Notification All Clear
+                    {{ trans('mpcs-push-sse::word.all_clear_notifications') }}
                 </button>
             </div>
         </div>

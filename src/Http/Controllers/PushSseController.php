@@ -29,7 +29,7 @@ class PushSseController extends BaseController
             $model->deleteOlder();
             $model->updateDelivered();
 
-            $deliveryModel = $model->delivered()->get();
+            $deliveryModel = $model->deliverable()->get();
 
             echo ':' . str_repeat(' ', 2048) . "\n"; // 2 kB padding for IE
             echo "retry: 5000\n";

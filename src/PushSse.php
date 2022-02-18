@@ -26,13 +26,11 @@ class PushSse
             return false;
         }
 
+        Model::deleteProcessed();
+
         DB::beginTransaction();
         try {
-
             $model = new Model;
-
-            $model->deleteProcessed();
-
             $model->event =   $event;
             $model->title =   $title ?? null;
             $model->message = $message;

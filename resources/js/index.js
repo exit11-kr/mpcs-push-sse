@@ -2,6 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
   PUSHSSE.sseURL = PUSHSSE.sseURL ?? false;
   PUSHSSE.eventChannel = PUSHSSE.eventChannel ?? false;
 
+  if (PUSHSSE.sseURL && window.EventSource !== undefined) {
+    PUSHSSE.EventSource = new EventSource(`${PUSHSSE.sseURL}`);
+  }
+
   if (PUSHSSE.sseURL) {
     PUSHSSEMESSAGE.sseDefaultEvent();
     PUSHSSEMESSAGE.notificableCheck();
@@ -65,9 +69,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let title = pushSseNotificationWrap.querySelector(".dropdown-header");
     if (data.length > 0) {
-      title.innerHTML = `New Notification List`;
+      title.innerHTML = title.dataset.titleList;
     } else {
-      title.innerHTML = `Empty Notification Datas`;
+      title.innerHTML = title.dataset.titleEmpty;
     }
 
     data.forEach((element) => {
@@ -109,21 +113,18 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!callback) {
         callback = (callbackData) => {};
       }
-      const sseURL = PUSHSSE.sseURL;
-      if (!sseURL) {
+      if (!PUSHSSE.EventSource) {
         return;
       }
-      if (window.EventSource !== undefined) {
-        const sse = new EventSource(`${sseURL}`);
-        sse.addEventListener(
-          eventName,
-          (e) => {
-            PUSHSSEMESSAGE.eventPush(e.data);
-            callback(e.data);
-          },
-          false
-        );
-      }
+      const sse = PUSHSSE.EventSource;
+      sse.addEventListener(
+        eventName,
+        (e) => {
+          PUSHSSEMESSAGE.eventPush(e.data);
+          callback(e.data);
+        },
+        false
+      );
     },
 
     /**

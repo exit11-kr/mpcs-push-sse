@@ -63,15 +63,12 @@ if (class_exists('Exit11\PushSse\Facades\PushSse') && config('mpcspushsse.enable
 
 ### Front-end
 
+- `resources/views/mpcs/global_foot_script.blade.php` 파일에 아래 코드를 추가합니다.
+
 ```javascript
 // Blade 에서 사용할 예시
-@push('after_app_src_scripts')
-        <script>
-            // Customize the notification channel
-            PUSHSSEMESSAGE.getChannel({$eventName}, (data) => {
-                // custom code
-                console.log(data);
-            });
-        </script>
-@endpush
+PUSHSSEMESSAGE.getChannel("pushSseArticle", (data) => {
+  // custom code
+  console.log(data);
+});
 ```

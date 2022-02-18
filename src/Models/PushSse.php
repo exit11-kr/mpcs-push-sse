@@ -16,7 +16,7 @@ class PushSse extends Model
      * @param  mixed $query
      * @return void
      */
-    public function scopeDelivered($query)
+    public function scopeDeliverable($query)
     {
         $now = Carbon::now()->format('Y-m-d H:i:s');
         $query = $query->where('pushed_at', '<=', $now);
@@ -52,15 +52,15 @@ class PushSse extends Model
 
     /**
      * scopeUpdateDelivered
-     * 푸시 시간과 생성시간이 딜레이타임보다 작은 경우에만 전송상태를 변경한다.
+     * 푸시 시간과 생성시간이 딜레이타임보다 작은 경우에만 전송상태로 변경한다.
      * @param  mixed $query
      * @return void
      */
     public function scopeUpdateDelivered($query)
     {
         return $query
-            ->where('created_at', '<=', $this->delayTime())
             ->where('pushed_at', '<=', $this->delayTime())
+            ->where('created_at', '<=', $this->delayTime())
             ->update(['delivered' => '1']);
     }
 
@@ -77,7 +77,7 @@ class PushSse extends Model
     }
 
     /**
-     * Tries to identify different SSE connections
+     * getClientId
      *
      * @return string
      */
@@ -87,15 +87,11 @@ class PushSse extends Model
     }
 
     /**
-     * Deletes already processed events
+     * setPushedAtAttribute
+     *
+     * @param  mixed $value
+     * @return void
      */
-    public function deleteProcessed()
-    {
-        if (!config('mpcspushsse.keep_events_logs')) {
-            return $this->where('delivered', 1)->delete();
-        }
-    }
-
     public function setPushedAtAttribute($value)
     {
         $this->attributes['pushed_at'] = $value ?? Carbon::now()->format('Y-m-d H:i:s');
@@ -110,6 +106,16 @@ class PushSse extends Model
     public function uuids()
     {
         return $this->hasMany(PushSseUuid::class, 'push_sse_id');
+    }
+
+    /**
+     * Deletes already processed events
+     */
+    public static function deleteProcessed()
+    {
+        if (!config('mpcspushsse.keep_events_logs')) {
+            return PushSse::where('delivered', 1)->delete();
+        }
     }
 
     /**
