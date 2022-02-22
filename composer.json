@@ -12,9 +12,6 @@
     "mpcs-ui/bootstrap5": "~0.1.0|dev-master",
     "mpcs/core": "~0.1.0|dev-master"
   },
-  "require-dev": {
-    "phpunit/phpunit": "^8.0"
-  },
   "autoload": {
     "psr-4": {
       "Exit11\\PushSse\\": "src/"
