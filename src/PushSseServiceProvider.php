@@ -25,7 +25,6 @@ class PushSseServiceProvider extends ServiceProvider
         /* 콘솔에서 vendor:publish 가동시 설치 파일 */
         if ($this->app->runningInConsole()) {
             $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
-            $this->publishes([__DIR__ . '/../config' => config_path()], 'mpcs-push-sse-config');
             $this->publishes([__DIR__ . '/../dist/' => public_path() . '/vendor/exit11/push-sse/'], 'mpcs-push-sse-assets');
         }
 
@@ -45,6 +44,9 @@ class PushSseServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        // config
+        $this->mergeConfigFrom(__DIR__ . '/../config/mpcspushsse.php', 'mpcspushsse');
+
         $this->commands($this->commands);
     }
 }
