@@ -1,6 +1,6 @@
 <?php
 
-namespace Exit11\PushSse\Commands;
+namespace Mpcs\PushSse\Commands;
 
 use Illuminate\Console\Command;
 
@@ -42,7 +42,7 @@ class InstallCommand extends Command
 
                 // publish
                 $this->call('vendor:publish', [
-                    '--provider' => 'Exit11\PushSse\PushSseServiceProvider',
+                    '--provider' => 'Mpcs\PushSse\PushSseServiceProvider',
                     '--force' => $this->isForce
                 ]);
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace Exit11\PushSse\Http\Controllers;
+namespace Mpcs\PushSse\Http\Controllers;
 
 use Illuminate\Routing\Controller as BaseController;
 use Symfony\Component\HttpFoundation\StreamedResponse;
-use Exit11\PushSse\Models\PushSse as Model;
+use Mpcs\PushSse\Models\PushSse as Model;
 use Illuminate\Support\Carbon;
 
 class PushSseController extends BaseController

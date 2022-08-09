@@ -1,8 +1,8 @@
 <?php
 
-namespace Exit11\PushSse;
+namespace Mpcs\PushSse;
 
-use Exit11\PushSse\Models\PushSse as Model;
+use Mpcs\PushSse\Models\PushSse as Model;
 use Illuminate\Support\Facades\DB;
 use Exception;
 

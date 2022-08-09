@@ -8,5 +8,5 @@
     </script>
     @component('mpcs-push-sse::script_templates')
     @endcomponent
-    <script src="{{ mix('/vendor/exit11/push-sse/js/index.js') }}"></script>
+    <script src="{{ mix('/vendor/mpcs/push-sse/js/index.js') }}"></script>
 @endif

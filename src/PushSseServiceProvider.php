@@ -1,6 +1,6 @@
 <?php
 
-namespace Exit11\PushSse;
+namespace Mpcs\PushSse;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory as EloquentFactory;
@@ -26,7 +26,7 @@ class PushSseServiceProvider extends ServiceProvider
         /* 콘솔에서 vendor:publish 가동시 설치 파일 */
         if ($this->app->runningInConsole()) {
             $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
-            $this->publishes([__DIR__ . '/../dist/' => public_path() . '/vendor/exit11/push-sse/'], 'mpcs-push-sse-assets');
+            $this->publishes([__DIR__ . '/../dist/' => public_path() . '/vendor/mpcs/push-sse/'], 'mpcs-push-sse-assets');
         }
 
         /* 라우터, 다국어 */

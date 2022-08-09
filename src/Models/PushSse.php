@@ -1,6 +1,6 @@
 <?php
 
-namespace Exit11\PushSse\Models;
+namespace Mpcs\PushSse\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;

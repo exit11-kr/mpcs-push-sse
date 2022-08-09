@@ -1,5 +1,5 @@
 {
-  "name": "exit11/push-sse",
+  "name": "mpcs/push-sse",
   "description": "mpcs core : Push SSE extention",
   "type": "library",
   "authors": [
@@ -9,21 +9,21 @@
     }
   ],
   "require": {
-    "mpcs-ui/bootstrap5": "~0.1.0|dev-master",
+    "mpcs/bootstrap5": "~0.1.0|dev-master",
     "mpcs/core": "~0.1.0|dev-master"
   },
   "autoload": {
     "psr-4": {
-      "Exit11\\PushSse\\": "src/"
+      "Mpcs\\PushSse\\": "src/"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "Exit11\\PushSse\\PushSseServiceProvider"
+        "Mpcs\\PushSse\\PushSseServiceProvider"
       ],
       "aliases": {
-        "PushSse": "Exit11\\PushSse\\Facades\\PushSse"
+        "PushSse": "Mpcs\\PushSse\\Facades\\PushSse"
       }
     }
   }

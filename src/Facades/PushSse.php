@@ -1,6 +1,6 @@
 <?php
 
-namespace Exit11\PushSse\Facades;
+namespace Mpcs\PushSse\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
@@ -8,6 +8,6 @@ class PushSse extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return \Exit11\PushSse\PushSse::class;
+        return \Mpcs\PushSse\PushSse::class;
     }
 }

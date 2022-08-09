@@ -43,7 +43,7 @@ php artisan vendor:publish --tag="mpcs-push-sse-config"
 ### Article Repository에 적용된 예시
 
 // PushSse 클래스가 있는지, 사용가능한지 확인
-if (class_exists('Exit11\PushSse\Facades\PushSse') && config('mpcspushsse.enabled')) {
+if (class_exists('Mpcs\PushSse\Facades\PushSse') && config('mpcspushsse.enabled')) {
     // PushSse 클래스가 있으면 푸시 전송
     \PushSse::sseQueue($pushMessage, $title, [
         'is_private' => false, // 공개, 비공개 여부
