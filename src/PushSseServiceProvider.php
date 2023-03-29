@@ -34,7 +34,7 @@ class PushSseServiceProvider extends ServiceProvider
 
             // 다국어 알리어스를 mpcs로 네이밍 규칙을 통일하여 사용하기로 함
             $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'mpcs-push-sse');
-            $this->loadRoutesFrom(__DIR__ . '/../routes/tenant.php');
+            $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
         });
 
         Core::setPackageModelVendors(__NAMESPACE__, __DIR__);
