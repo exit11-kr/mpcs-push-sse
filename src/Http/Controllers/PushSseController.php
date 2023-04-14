@@ -82,8 +82,7 @@ class PushSseController extends BaseController
                     $clientModel->save();
                 }
             }
-
-            ob_flush();
+            if (ob_get_level() > 0) {ob_flush();}
             flush();
             sleep(config('mpcspushsse.interval'));
         });
