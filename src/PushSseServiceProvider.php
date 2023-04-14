@@ -26,6 +26,7 @@ class PushSseServiceProvider extends ServiceProvider
         /* 콘솔에서 vendor:publish 가동시 설치 파일 */
         if ($this->app->runningInConsole()) {
             $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+            $this->loadMigrationsFrom(__DIR__ . '/../database/migrations/universal');
             $this->publishes([__DIR__ . '/../dist/' => public_path() . '/vendor/mpcs/push-sse/'], 'mpcs-push-sse-assets');
         }
 
