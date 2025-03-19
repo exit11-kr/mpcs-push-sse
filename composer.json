@@ -1,30 +1,30 @@
 {
-  "name": "mpcs/push-sse",
-  "description": "mpcs core : Push SSE extention",
-  "type": "library",
-  "authors": [
-    {
-      "name": "HWAJUN LEE",
-      "email": "ezrock@naver.com"
+    "name": "mpcs/push-sse",
+    "description": "mpcs core : Push SSE extention",
+    "type": "library",
+    "authors": [
+        {
+            "name": "HWAJUN LEE",
+            "email": "ezrock@naver.com"
+        }
+    ],
+    "require": {
+        "mpcs/bootstrap5": "~0.3.0|dev-master",
+        "mpcs/core": "~0.3.0|dev-master|^1.0|v1.x-dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mpcs\\PushSse\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Mpcs\\PushSse\\PushSseServiceProvider"
+            ],
+            "aliases": {
+                "PushSse": "Mpcs\\PushSse\\Facades\\PushSse"
+            }
+        }
     }
-  ],
-  "require": {
-    "mpcs/bootstrap5": "~0.3.0|dev-master",
-    "mpcs/core": "~0.3.0|dev-master"
-  },
-  "autoload": {
-    "psr-4": {
-      "Mpcs\\PushSse\\": "src/"
-    }
-  },
-  "extra": {
-    "laravel": {
-      "providers": [
-        "Mpcs\\PushSse\\PushSseServiceProvider"
-      ],
-      "aliases": {
-        "PushSse": "Mpcs\\PushSse\\Facades\\PushSse"
-      }
-    }
-  }
 }
